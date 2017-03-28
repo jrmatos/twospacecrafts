@@ -47,10 +47,15 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\BlackholeController.cs" />
+     <Compile Include="Assets\Scripts\DestroyIn.cs" />
+     <Compile Include="Assets\Scripts\DestroyOutside.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\GetDown.cs" />
+     <Compile Include="Assets\Scripts\NestedPrefab.cs" />
+     <Compile Include="Assets\Scripts\NestedPrefabData.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PrefabsManager.cs" />
+     <Compile Include="Assets\Scripts\ResumeGame.cs" />
      <Compile Include="Assets\Scripts\Rotate.cs" />
      <Compile Include="Assets\Scripts\ScoreManager.cs" />
      <Compile Include="Assets\Scripts\ScrollTexture.cs" />

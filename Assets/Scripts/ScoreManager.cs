@@ -23,6 +23,11 @@ public class ScoreManager : MonoBehaviour {
 		return highScore;
 	}
 
+	public void setScore(int score) {
+		this.score = score;
+		text.text = "" + score;
+	}
+
 	public void AddScore(int points){
 		score += points;
 		text.text = "" + score;

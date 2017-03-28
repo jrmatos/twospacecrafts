@@ -4,30 +4,32 @@ using UnityEngine;
 
 public class GetDown : MonoBehaviour {
 
-	public static float speed = 2f;
-	public float speedIncreaseRate = 0.001f;
+	public static float speed = 1f;
+	public float speedIncreaseRate = 0f;
 	private Vector3 tempPosition;
+
+	private GameManager gameManager;
 
 	// Use this for initialization
 	void Start () {
 		InvokeRepeating("IncreaseSpeed", 0f, 1f);
+		gameManager = GameObject.FindObjectOfType<GameManager> ();
 	}
 
 	void IncreaseSpeed() {
-		if (speed <= 8) {
+		if (speed <= 10) {
 			speed += speedIncreaseRate;
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		tempPosition = transform.position;
-		tempPosition.y -= speed * Time.deltaTime;
-		transform.position = tempPosition;
-
-
-		if (transform.position.y <= -6) {
+		if (!gameManager.isGameover ()) {
+			tempPosition = transform.position;
+			tempPosition.y -= speed * Time.deltaTime;
+			transform.position = tempPosition;
+		} else {
 			Destroy (gameObject);
-		} 
+		}
 	}
 }

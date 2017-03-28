@@ -6,12 +6,13 @@ public class PrefabsManager : MonoBehaviour {
 
 	public GameObject Blackhole;
 	public GameObject Star;
+	public GameObject Stars;
 	private GameObject Generic;
 	private Vector2 textureVellocity;
 
 	private ScrollTexture scrollTexture;
 
-	float generateRate = 1f;
+	public static float generateRate = 1f;
 
 	public List<GameObject> prefabsList;
 
@@ -27,12 +28,14 @@ public class PrefabsManager : MonoBehaviour {
 		scrollTexture = GameObject.FindObjectOfType<ScrollTexture> ();
 		prefabsList.Add (Blackhole);
 		prefabsList.Add (Star);
+		prefabsList.Add (Stars);
+		prefabsList.Add (Blackhole);
 		InvokeRepeating("decreaseRate", 0f, 1f);
 		Invoke ("GenerateGameObjects", generateRate);
 	}
 
 	void decreaseRate() {
-		if (generateRate >= 0.70) {
+		if (generateRate >= 0.50) {
 			generateRate -= 0.01f;
 		}
 	}
@@ -43,7 +46,7 @@ public class PrefabsManager : MonoBehaviour {
 
 	void GenerateGameObjects() {
 
-		Generic = (GameObject)Instantiate (prefabsList[Random.Range(0,2)]);
+		Generic = (GameObject)Instantiate (prefabsList[Random.Range(0, 4)]);
 
 		if (initialGeneralSide) {
 			if (Random.Range(0,2) == 1) {
@@ -71,8 +74,7 @@ public class PrefabsManager : MonoBehaviour {
 	}
 
 	void updateScrollTexture() {
-		
-		if(ScrollTexture.scrollVelocity.y < 1f) {
+		if(ScrollTexture.scrollVelocity.y < 1.5f) {
 			textureVellocity = ScrollTexture.scrollVelocity;
 			textureVellocity.y += 0.02f;
 			// increase texture speed

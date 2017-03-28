@@ -13,11 +13,9 @@ public class GameManager : MonoBehaviour {
 	private ScoreManager scoreManager;
 	CanvasGroup restartButtonCanvasGroup;
 
-	private float initialTimeScale;
 
 	// Use this for initialization
 	void Start () {
-		initialTimeScale = Time.timeScale;
 		scoreManager = GameObject.FindObjectOfType<ScoreManager> ();
 		restartButtonCanvasGroup = GameObject.Find("RestartButton").GetComponent<CanvasGroup>();
 	}
@@ -31,10 +29,18 @@ public class GameManager : MonoBehaviour {
 
 		if (this.gameover) {
 			Time.timeScale = 0;
-			showGameoverHUDs ();
 		} else {
-			Time.timeScale = initialTimeScale;
+			Time.timeScale = 1f;
+			scoreManager.setScore (0);
+
+			GetDown.speed = 1f;
+			PrefabsManager.generateRate = 1f;
+			Vector2 t = ScrollTexture.scrollVelocity;
+			t.y = 0;
+			ScrollTexture.scrollVelocity = t;
 		}
+
+		toggleGameoverHUDs ();
 	}
 
 	// Update is called once per frame
@@ -42,18 +48,18 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
-	void showGameoverHUDs() {
+	void toggleGameoverHUDs() {
 
 		gameoverScoreText.text = "Score: " + scoreManager.getScore();
 		gameoverHighScoreText.text = "High Score: " + scoreManager.getHighScore();
 
-		scoreText.GetComponent<Text> ().enabled = false;
-		gameoverText.GetComponent<Text> ().enabled = true;
-		gameoverScoreText.GetComponent<Text> ().enabled = true;
-		gameoverHighScoreText.GetComponent<Text> ().enabled = true;
+		scoreText.GetComponent<Text> ().enabled = !scoreText.GetComponent<Text> ().enabled;
+		gameoverText.GetComponent<Text> ().enabled = !gameoverText.GetComponent<Text> ().enabled;
+		gameoverScoreText.GetComponent<Text> ().enabled = !gameoverScoreText.GetComponent<Text> ().enabled;
+		gameoverHighScoreText.GetComponent<Text> ().enabled = !gameoverHighScoreText.GetComponent<Text> ().enabled;
 
-		restartButtonCanvasGroup.alpha = 1f;
-		restartButtonCanvasGroup.interactable = true;
-		restartButtonCanvasGroup.blocksRaycasts = true;
+		restartButtonCanvasGroup.alpha = (restartButtonCanvasGroup.alpha == 1f) ? 0f : 1f;
+		restartButtonCanvasGroup.interactable = !restartButtonCanvasGroup.interactable;
+		restartButtonCanvasGroup.blocksRaycasts = !restartButtonCanvasGroup.blocksRaycasts;
 	}
 }
