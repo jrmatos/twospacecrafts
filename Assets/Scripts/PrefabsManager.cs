@@ -32,7 +32,7 @@ public class PrefabsManager : MonoBehaviour {
 	}
 
 	void decreaseRate() {
-		generateRate -= 0.01f;
+		generateRate -= 0.03f;
 	}
 
 	// Update is called once per frame
