@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
 	public Text scoreText;
 	public Text gameoverScoreText;
 	public Text gameoverHighScoreText;
+	public Text tutorialText;
 	private ScoreManager scoreManager;
 	CanvasGroup restartButtonCanvasGroup;
 
@@ -18,6 +19,7 @@ public class GameManager : MonoBehaviour {
 	void Start () {
 		scoreManager = GameObject.FindObjectOfType<ScoreManager> ();
 		restartButtonCanvasGroup = GameObject.Find("RestartButton").GetComponent<CanvasGroup>();
+		setGameover (true);
 	}
 
 	public bool isGameover(){
@@ -57,6 +59,7 @@ public class GameManager : MonoBehaviour {
 		gameoverText.GetComponent<Text> ().enabled = !gameoverText.GetComponent<Text> ().enabled;
 		gameoverScoreText.GetComponent<Text> ().enabled = !gameoverScoreText.GetComponent<Text> ().enabled;
 		gameoverHighScoreText.GetComponent<Text> ().enabled = !gameoverHighScoreText.GetComponent<Text> ().enabled;
+		tutorialText.GetComponent<Text> ().enabled = !tutorialText.GetComponent<Text> ().enabled;
 
 		restartButtonCanvasGroup.alpha = (restartButtonCanvasGroup.alpha == 1f) ? 0f : 1f;
 		restartButtonCanvasGroup.interactable = !restartButtonCanvasGroup.interactable;
