@@ -5,7 +5,7 @@ using UnityEngine;
 public class GetDown : MonoBehaviour {
 
 	public static float speed = 2f;
-	public float speedIncreaseRate = 0.020f;
+	public float speedIncreaseRate = 0.001f;
 	private Vector3 tempPosition;
 
 	// Use this for initialization
@@ -14,7 +14,9 @@ public class GetDown : MonoBehaviour {
 	}
 
 	void IncreaseSpeed() {
-		speed += speedIncreaseRate;
+		if (speed <= 8) {
+			speed += speedIncreaseRate;
+		}
 	}
 	
 	// Update is called once per frame

@@ -32,7 +32,9 @@ public class PrefabsManager : MonoBehaviour {
 	}
 
 	void decreaseRate() {
-		generateRate -= 0.03f;
+		if (generateRate >= 0.70) {
+			generateRate -= 0.01f;
+		}
 	}
 
 	// Update is called once per frame
@@ -64,11 +66,17 @@ public class PrefabsManager : MonoBehaviour {
 
 		initialGeneralSide = !initialGeneralSide;
 
-		// increase texture speed
-		textureVellocity = ScrollTexture.scrollVelocity;
-		textureVellocity.y += 0.02f;
-		ScrollTexture.scrollVelocity = textureVellocity;
 		Invoke ("GenerateGameObjects", generateRate);
+		updateScrollTexture ();
+	}
 
+	void updateScrollTexture() {
+		
+		if(ScrollTexture.scrollVelocity.y < 1f) {
+			textureVellocity = ScrollTexture.scrollVelocity;
+			textureVellocity.y += 0.02f;
+			// increase texture speed
+			ScrollTexture.scrollVelocity = textureVellocity;
+		}
 	}
 }
