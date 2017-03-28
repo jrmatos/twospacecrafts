@@ -10,7 +10,7 @@ public class ScrollTexture : MonoBehaviour {
 	Material material;
 
 	[Header("Velocity")]
-	public Vector2 scrollVelocity;
+	public static Vector2 scrollVelocity;
 	public Vector2 scrollOffset;
 
 	// Use this for initialization

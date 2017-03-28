@@ -22,19 +22,23 @@ public static class SpacecraftsPosition
 public class PlayerController : MonoBehaviour {
 
 
-	public GameObject spacecraftOne;
-	public GameObject spacecraftTwo;
+	private GameObject spacecraftOne;
+	private GameObject spacecraftTwo;
+	private GameManager gameManager;
 
 	// Use this for initialization
 	void Start () {
 		spacecraftOne = GameObject.Find ("SpacecraftOne");
 		spacecraftTwo = GameObject.Find ("SpacecraftTwo");
+		gameManager = GameObject.FindObjectOfType<GameManager> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		GetInput ();
-		MoveSpacecrafts ();
+		if (!gameManager.isGameover ()) {
+			GetInput ();
+			MoveSpacecrafts ();
+		}
 	}
 
 	void GetInput() {		
